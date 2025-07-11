@@ -25,8 +25,6 @@ TAREAS = [
     "Actualizacion semanal de precios combustibles"
 ]
 
-# Cargar datos desde archivo JSON
-
 
 def cargar_datos():
     if not os.path.exists(DB_FILE):
@@ -34,8 +32,6 @@ def cargar_datos():
             json.dump({}, f)
     with open(DB_FILE, "r") as f:
         return json.load(f)
-
-# Guardar datos en archivo JSON
 
 
 def guardar_datos(data):
@@ -94,4 +90,8 @@ def main(page: ft.Page):
     page.add(btn_guardar)
 
 
-ft.app(target=main)
+# 🚨 ESTA ES LA PARTE CRÍTICA PARA RENDER
+if __name__ == "__main__":
+    # Render establece PORT dinámicamente
+    port = int(os.environ.get("PORT", 8000))
+    ft.app(target=main, view=ft.WEB_BROWSER, port=port)
