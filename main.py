@@ -3,6 +3,7 @@ import json
 from datetime import date
 import os
 
+
 DB_FILE = "data.json"
 TAREAS = [
     "Cuadrar recaudaciones",
